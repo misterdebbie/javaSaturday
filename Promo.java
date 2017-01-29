@@ -8,17 +8,18 @@ public class Promo {
   char again;
   boolean dayCheck = false;
   boolean openSesame = false;
-  double originalPrice, promo, salePrice, discount, totalSavings = 10.00;
+  double originalPrice, promo, salePrice, discount, totalSavings = 0;
   final double perCheck = .1;
   final int check = 0;
 
   //create a Scanner object to read input
   Scanner keyboard = new Scanner (System.in);
-  //Get user name
   do {
+  //Get user name
   System.out.print("Enter your username: ");
   username = keyboard.nextLine();
   //Get the day to track
+  //Validate user input
   System.out.print("Enter the day of the week: ");
   day = keyboard.nextLine();
   switch (day){
@@ -61,6 +62,7 @@ public class Promo {
   System.out.print("Enter the purchase item name: ");
   itemname = keyboard.nextLine();
   //Get the original price of item
+  //Validate user input
   System.out.print("Enter the original item price: ");
   originalPrice = keyboard.nextDouble();
   while (originalPrice <= check){
@@ -69,6 +71,7 @@ public class Promo {
     originalPrice = keyboard.nextDouble();
 }
   //Get the promotional discount to be applied
+  //Validate user input
   System.out.print("Enter the discount: ");
   promo = keyboard.nextDouble();
   while (promo <= check){
@@ -80,12 +83,16 @@ public class Promo {
   discount = originalPrice * promo;
   //calculate the final cost
   salePrice = originalPrice - discount;
+  //track total savings
+  totalSavings += discount;
   System.out.printf("Username: %s, Day: %s, Item: %s\n", username, day, itemname);
   System.out.printf("You saved $%,.2f\n", discount);
   System.out.printf("Your final cost is $%,.2f\n", salePrice);
-  if (totalSavings <= discount){
+  System.out.printf("Accumulated savings of $%,.2f\n", totalSavings);
+
+  /*if (totalSavings <= discount){
   System.out.println("Way to go!");
-}
+}*/
 System.out.println("Would you like to enter another purchase?");
 keyboard.nextLine();
 System.out.print("Enter (Y)yes or (N)no: ");
