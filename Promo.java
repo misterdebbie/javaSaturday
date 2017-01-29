@@ -1,10 +1,12 @@
 import java.util.Scanner;
+import java.io.*;
+
 //Demo app for calculating savings
 
 public class Promo {
- public static void main (String[] args) {
+ public static void main (String[] args) throws IOException {
   //declare variables
-  String username, day, itemname, repeat;
+  String filename, username, day, itemname, repeat;
   char again;
   boolean dayCheck = false;
   boolean openSesame = false;
@@ -15,6 +17,10 @@ public class Promo {
   //create a Scanner object to read input
   Scanner keyboard = new Scanner (System.in);
   do {
+    //Get filename
+    System.out.print("Enter the filename: ");
+    filename = keyboard.nextLine();
+    PrintWriter outputFile = new PrintWriter(filename);
   //Get user name
   System.out.print("Enter your username: ");
   username = keyboard.nextLine();
@@ -89,7 +95,13 @@ public class Promo {
   System.out.printf("You saved $%,.2f\n", discount);
   System.out.printf("Your final cost is $%,.2f\n", salePrice);
   System.out.printf("Accumulated savings of $%,.2f\n", totalSavings);
-
+  outputFile.printf("Username: %s, Day: %s, Item: %s\n", username, day, itemname);
+  outputFile.printf("You saved $%,.2f\n", discount);
+  outputFile.printf("Your final cost is $%,.2f\n", salePrice);
+  outputFile.printf("Accumulated savings of $%,.2f\n", totalSavings);
+  //close the file
+  outputFile.close();
+  System.out.println("Data written to the file.");
   /*if (totalSavings <= discount){
   System.out.println("Way to go!");
 }*/
@@ -108,5 +120,6 @@ else {
 }while (openSesame);
 System.out.println("Thanks for using Yang's Money Tracker!");
 System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
 }
 }
