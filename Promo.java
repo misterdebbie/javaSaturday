@@ -20,7 +20,8 @@ public class Promo {
     //Get filename
     System.out.print("Enter the filename: ");
     filename = keyboard.nextLine();
-    PrintWriter outputFile = new PrintWriter(filename);
+    FileWriter fwriter = new FileWriter(filename, true);
+    PrintWriter outputFile = new PrintWriter(fwriter);
   //Get user name
   System.out.print("Enter your username: ");
   username = keyboard.nextLine();
@@ -63,7 +64,10 @@ public class Promo {
     while (!dayCheck){
       System.out.print("Invalid input. Enter day of the week again: ");
       day = keyboard.nextLine();
-}
+    }
+      dayCheck = true;
+  //need to reset flag, ouuuuuuuu???????
+
   //Get the item purchased
   System.out.print("Enter the purchase item name: ");
   itemname = keyboard.nextLine();
@@ -91,6 +95,7 @@ public class Promo {
   salePrice = originalPrice - discount;
   //track total savings
   totalSavings += discount;
+  //accumulated savings is tracking all test data!
   System.out.printf("Username: %s, Day: %s, Item: %s\n", username, day, itemname);
   System.out.printf("You saved $%,.2f\n", discount);
   System.out.printf("Your final cost is $%,.2f\n", salePrice);
