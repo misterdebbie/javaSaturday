@@ -11,10 +11,11 @@ public class Promo {
   char again;
   boolean dayCheck = false;
   boolean openSesame = false;
-  double originalPrice, promo, salePrice, discount, totalSavings = 0;
+  double originalPrice, promo, finalPrice, discount, totalSavings = 0;
   final double perCheck = .1;
   final int check = 0;
   //choice = fileChoice();
+  do {
   choice = fileChoice();
   if (choice == 1){
     creatNewFile();
@@ -25,6 +26,7 @@ public class Promo {
     discount = getDiscount();
     finalPrice = getFinalPrice(originalPrice, discount);
     System.out.println(finalPrice);
+    openSesame = addData();
 
   }
   else{
@@ -36,8 +38,9 @@ public class Promo {
     discount = getDiscount();
     finalPrice = getFinalPrice(originalPrice, discount);
     System.out.println(finalPrice);
-
-  }
+    openSesame = addData();
+}
+}while(openSesame);
   }//close main
   public static int fileChoice(){
   int input;
@@ -161,6 +164,23 @@ public class Promo {
     discount = original * promo;
     finalCost = original - discount;
     return finalCost;
+  }
+  public static boolean addData (){
+    Scanner keyboard = new Scanner (System.in);
+    String input;
+    boolean oneMoreTime;
+    char again;
+    System.out.println("Would you like to enter another purchase?");
+    System.out.print("Enter (Y)yes or (N)no: ");
+    input = keyboard.nextLine();
+    again = input.charAt(0);
+    if (again == 'Y' || again == 'y'){
+      oneMoreTime = true;
+    }
+    else {
+      oneMoreTime = false;
+    }
+    return oneMoreTime;
   }
   //create a Scanner object to read input
   /*Scanner keyboard = new Scanner (System.in);
