@@ -18,7 +18,7 @@ public class Promo {
   do {
   choice = fileChoice();
   if (choice == 1){
-    creatNewFile();
+    filename = createNewFile();
     username = getUsername();
     day = getDay();
     itemname = getItem();
@@ -26,21 +26,25 @@ public class Promo {
     discount = getDiscount();
     finalPrice = getFinalPrice(originalPrice, discount);
     System.out.println(finalPrice);
+    writeToNewFile(filename, username, itemname, day, originalPrice, discount, finalPrice);
     openSesame = addData();
-
   }
   else{
-    openFile();
+    filename = openFile();
     username = getUsername();
     day = getDay();
     itemname = getItem();
     originalPrice = getItemCost();
     discount = getDiscount();
     finalPrice = getFinalPrice(originalPrice, discount);
+    addToFile(filename, username, itemname, day, originalPrice, discount, finalPrice);
     System.out.println(finalPrice);
     openSesame = addData();
 }
 }while(openSesame);
+
+  System.out.println("Thanks for using Yang's Money Tracker!");
+  System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
   }//close main
   public static int fileChoice(){
   int input;
@@ -51,7 +55,7 @@ public class Promo {
   keyboard.nextLine();
   return input;
   }
-  public static void creatNewFile() throws IOException{
+  public static String createNewFile() throws IOException{
   String fName;
   Scanner keyboard = new Scanner (System.in);
   System.out.print("Enter the filename: ");
@@ -62,6 +66,7 @@ public class Promo {
     System.out.print("Enter a new filename: ");
     fName = keyboard.nextLine();
   }
+  return fName;
   }
   public static String openFile () throws IOException{
   String fName;
@@ -182,6 +187,27 @@ public class Promo {
     }
     return oneMoreTime;
   }
+  public static void writeToNewFile(String fName, String uName, String userItem, String day, double originalCost, double discount, double finalCost) throws IOException{
+  PrintWriter outputFile = new PrintWriter (fName);
+  outputFile.printf("Username: %s, Day: %s, Item: %s\n", uName, day, userItem);
+  outputFile.printf("You saved $%,.2f\n", discount);
+  outputFile.printf("Your final cost is $%,.2f\n", finalCost);
+  //outputFile.printf("Accumulated savings of $%,.2f\n", totalSavings);
+  //close the file
+  outputFile.close();
+  System.out.println("Data written to the file.");
+}
+public static void addToFile(String fName, String uName, String userItem, String day, double originalCost, double discount, double finalCost) throws IOException{
+PrintWriter outputFile = new PrintWriter (fName);
+outputFile.printf("Username: %s, Day: %s, Item: %s\n", uName, day, userItem);
+outputFile.printf("You saved $%,.2f\n", discount);
+outputFile.printf("Your final cost is $%,.2f\n", finalCost);
+//outputFile.printf("Accumulated savings of $%,.2f\n", totalSavings);
+//close the file
+outputFile.close();
+System.out.println("Data written to the file.");
+}
+
   //create a Scanner object to read input
   /*Scanner keyboard = new Scanner (System.in);
   do {
