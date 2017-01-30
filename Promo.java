@@ -21,6 +21,10 @@ public class Promo {
     username = getUsername();
     day = getDay();
     itemname = getItem();
+    originalPrice = getItemCost();
+    discount = getDiscount();
+    finalPrice = getFinalPrice(originalPrice, discount);
+    System.out.println(finalPrice);
 
   }
   else{
@@ -28,6 +32,10 @@ public class Promo {
     username = getUsername();
     day = getDay();
     itemname = getItem();
+    originalPrice = getItemCost();
+    discount = getDiscount();
+    finalPrice = getFinalPrice(originalPrice, discount);
+    System.out.println(finalPrice);
 
   }
   }//close main
@@ -120,6 +128,39 @@ public class Promo {
   System.out.print("Enter the item name: ");
   userItem = keyboard.nextLine();
   return userItem;
+  }
+  public static double getItemCost (){
+
+    double itemCost, check = 0;
+    Scanner keyboard = new Scanner (System.in);
+    System.out.print("Enter the original item price: ");
+    itemCost = keyboard.nextDouble();
+    while (itemCost <= check){
+      System.out.println("Entered value cannot be less than $0.00");
+      System.out.print("Enter the item price again: ");
+      itemCost= keyboard.nextDouble();
+  }
+    return itemCost;
+  }
+  public static double getDiscount (){
+
+    double promo, check = 0;
+    Scanner keyboard = new Scanner (System.in);
+    System.out.print("Enter the discount: ");
+    promo = keyboard.nextDouble();
+    while (promo <= check){
+      System.out.println("Entered value cannot be less than 0");
+      System.out.print("Enter the item discount again: ");
+      promo = keyboard.nextDouble();
+  }
+    return promo;
+  }
+  public static double getFinalPrice (double original, double promo){
+
+    double discount, finalCost;
+    discount = original * promo;
+    finalCost = original - discount;
+    return finalCost;
   }
   //create a Scanner object to read input
   /*Scanner keyboard = new Scanner (System.in);
