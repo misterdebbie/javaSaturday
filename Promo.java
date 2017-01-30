@@ -7,6 +7,7 @@ public class Promo {
  public static void main (String[] args) throws IOException {
   //declare variables
   String filename, username, day, itemname, repeat;
+  int choice;
   char again;
   boolean dayCheck = false;
   boolean openSesame = false;
@@ -18,12 +19,228 @@ public class Promo {
   Scanner keyboard = new Scanner (System.in);
   do {
     //Get filename
+    System.out.print("Would you like to (1) create a new file or (2) add to an existing file?");
+    choice = keyboard.nextInt();
+    keyboard.nextLine();
+    if (choice == 1){
+      System.out.print("Enter the filename: ");
+      filename = keyboard.nextLine();
+      File file = new File (filename);
+      if (file.exists()){
+        System.out.println("The file " + filename + " already exists");
+        System.out.print("Enter a new filename: ");
+        filename = keyboard.nextLine();
+      }
+      else {
+        PrintWriter outputFile = new PrintWriter(filename);
+        //Get user name
+        System.out.print("Enter your username: ");
+        username = keyboard.nextLine();
+        //Get the day to track
+        //Validate user input
+        System.out.print("Enter the day of the week: ");
+        day = keyboard.nextLine();
+        switch (day){
+          case "Monday":
+          case "monday":
+          dayCheck = true;
+          break;
+          case "Tuesday":
+          case "tuesday":
+          dayCheck = true;
+          break;
+          case "Wednesday":
+          case "wednesday":
+          dayCheck = true;
+          break;
+          case "Thursday":
+          case "thursday":
+          dayCheck = true;
+          break;
+          case "Friday":
+          case "friday":
+          dayCheck = true;
+          break;
+          case "Saturday":
+          case "saturday":
+          dayCheck = true;
+          break;
+          case "Sunday":
+          case "sunday":
+          dayCheck = true;
+          break;
+          default:
+          dayCheck = false;
+          }
+          while (!dayCheck){
+            System.out.print("Invalid input. Enter day of the week again: ");
+            day = keyboard.nextLine();
+          }
+            dayCheck = true;
+        //need to reset flag, ouuuuuuuu???????
+
+        //Get the item purchased
+        System.out.print("Enter the purchase item name: ");
+        itemname = keyboard.nextLine();
+        //Get the original price of item
+        //Validate user input
+        System.out.print("Enter the original item price: ");
+        originalPrice = keyboard.nextDouble();
+        while (originalPrice <= check){
+          System.out.println("Entered value cannot be less than $0.00");
+          System.out.print("Enter the item price again: ");
+          originalPrice = keyboard.nextDouble();
+      }
+        //Get the promotional discount to be applied
+        //Validate user input
+        System.out.print("Enter the discount: ");
+        promo = keyboard.nextDouble();
+        while (promo <= check){
+          System.out.println("Entered value cannot be less than $0.00");
+          System.out.print("Enter the item discount again: ");
+          promo = keyboard.nextDouble();
+      }
+        //calculate the promotional discount
+        discount = originalPrice * promo;
+        //calculate the final cost
+        salePrice = originalPrice - discount;
+        //track total savings
+        totalSavings += discount;
+        //accumulated savings is tracking all test data!
+        System.out.printf("Username: %s, Day: %s, Item: %s\n", username, day, itemname);
+        System.out.printf("You saved $%,.2f\n", discount);
+        System.out.printf("Your final cost is $%,.2f\n", salePrice);
+        System.out.printf("Accumulated savings of $%,.2f\n", totalSavings);
+        outputFile.printf("Username: %s, Day: %s, Item: %s\n", username, day, itemname);
+        outputFile.printf("You saved $%,.2f\n", discount);
+        outputFile.printf("Your final cost is $%,.2f\n", salePrice);
+        outputFile.printf("Accumulated savings of $%,.2f\n", totalSavings);
+        //close the file
+        outputFile.close();
+        System.out.println("Data written to the file.");
+        /*if (totalSavings <= discount){
+        System.out.println("Way to go!");
+      }*/
+      System.out.println("Would you like to enter another purchase?");
+      keyboard.nextLine();
+      System.out.print("Enter (Y)yes or (N)no: ");
+      repeat = keyboard.nextLine();
+      again = repeat.charAt(0);
+      if (again == 'Y' || again == 'y'){
+        openSesame = true;
+      }
+      else {
+        openSesame = false;
+      }
+      }
+}
+else{
     System.out.print("Enter the filename: ");
     filename = keyboard.nextLine();
     FileWriter fwriter = new FileWriter(filename, true);
     PrintWriter outputFile = new PrintWriter(fwriter);
+    //Get user name
+    System.out.print("Enter your username: ");
+    username = keyboard.nextLine();
+    //Get the day to track
+    //Validate user input
+    System.out.print("Enter the day of the week: ");
+    day = keyboard.nextLine();
+    switch (day){
+      case "Monday":
+      case "monday":
+      dayCheck = true;
+      break;
+      case "Tuesday":
+      case "tuesday":
+      dayCheck = true;
+      break;
+      case "Wednesday":
+      case "wednesday":
+      dayCheck = true;
+      break;
+      case "Thursday":
+      case "thursday":
+      dayCheck = true;
+      break;
+      case "Friday":
+      case "friday":
+      dayCheck = true;
+      break;
+      case "Saturday":
+      case "saturday":
+      dayCheck = true;
+      break;
+      case "Sunday":
+      case "sunday":
+      dayCheck = true;
+      break;
+      default:
+      dayCheck = false;
+      }
+      while (!dayCheck){
+        System.out.print("Invalid input. Enter day of the week again: ");
+        day = keyboard.nextLine();
+      }
+        dayCheck = true;
+    //need to reset flag, ouuuuuuuu???????
+
+    //Get the item purchased
+    System.out.print("Enter the purchase item name: ");
+    itemname = keyboard.nextLine();
+    //Get the original price of item
+    //Validate user input
+    System.out.print("Enter the original item price: ");
+    originalPrice = keyboard.nextDouble();
+    while (originalPrice <= check){
+      System.out.println("Entered value cannot be less than $0.00");
+      System.out.print("Enter the item price again: ");
+      originalPrice = keyboard.nextDouble();
+  }
+    //Get the promotional discount to be applied
+    //Validate user input
+    System.out.print("Enter the discount: ");
+    promo = keyboard.nextDouble();
+    while (promo <= check){
+      System.out.println("Entered value cannot be less than $0.00");
+      System.out.print("Enter the item discount again: ");
+      promo = keyboard.nextDouble();
+  }
+    //calculate the promotional discount
+    discount = originalPrice * promo;
+    //calculate the final cost
+    salePrice = originalPrice - discount;
+    //track total savings
+    totalSavings += discount;
+    //accumulated savings is tracking all test data!
+    System.out.printf("Username: %s, Day: %s, Item: %s\n", username, day, itemname);
+    System.out.printf("You saved $%,.2f\n", discount);
+    System.out.printf("Your final cost is $%,.2f\n", salePrice);
+    System.out.printf("Accumulated savings of $%,.2f\n", totalSavings);
+    outputFile.printf("Username: %s, Day: %s, Item: %s\n", username, day, itemname);
+    outputFile.printf("You saved $%,.2f\n", discount);
+    outputFile.printf("Your final cost is $%,.2f\n", salePrice);
+    outputFile.printf("Accumulated savings of $%,.2f\n", totalSavings);
+    //close the file
+    outputFile.close();
+    System.out.println("Data written to the file.");
+    /*if (totalSavings <= discount){
+    System.out.println("Way to go!");
+  }*/
+  System.out.println("Would you like to enter another purchase?");
+  keyboard.nextLine();
+  System.out.print("Enter (Y)yes or (N)no: ");
+  repeat = keyboard.nextLine();
+  again = repeat.charAt(0);
+  if (again == 'Y' || again == 'y'){
+    openSesame = true;
+  }
+  else {
+    openSesame = false;
+  }
+  }
   //Get user name
-  System.out.print("Enter your username: ");
+  /*System.out.print("Enter your username: ");
   username = keyboard.nextLine();
   //Get the day to track
   //Validate user input
@@ -110,7 +327,7 @@ public class Promo {
   /*if (totalSavings <= discount){
   System.out.println("Way to go!");
 }*/
-System.out.println("Would you like to enter another purchase?");
+/*System.out.println("Would you like to enter another purchase?");
 keyboard.nextLine();
 System.out.print("Enter (Y)yes or (N)no: ");
 repeat = keyboard.nextLine();
@@ -120,7 +337,7 @@ if (again == 'Y' || again == 'y'){
 }
 else {
   openSesame = false;
-}
+}*/
 
 }while (openSesame);
 System.out.println("Thanks for using Yang's Money Tracker!");
