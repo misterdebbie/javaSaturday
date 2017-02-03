@@ -40,6 +40,10 @@ public class Item {
      public double getDiscount(){
        return percentDisco;
      }
+     //get the total item discount
+     public double getTotalDiscount(){
+       return originalPrice * percentDisco;
+     }
      //get the total discount
      public double getFinalCost(){
        return originalPrice - (originalPrice * percentDisco);
