@@ -3,14 +3,15 @@ import java.io.*;
 
 //demo using User and Item class
 public class MoneyTracker {
- public static void main (String[] args){
+ public static void main (String[] args)throws IOException{
   //declare variables
   String userName, password, filename;
   int choice;
 
+  //ProfileSetup user1 = new ProfileSetup();
   filename = createNewFile();
-  userName = getUsername();
-  password = getPassword();
+  userName = setUsername();
+  password = setPassword();
 
 //create user
 User user1 = new User (userName, password, filename);
@@ -30,18 +31,20 @@ System.out.println(user1.getFilename());
     System.out.print("Enter a new filename: ");
     fName = keyboard.nextLine();
   }
-  public static String getUsername (){
+  return fName;
+}
+  public static String setUsername (){
   String uName;
   Scanner keyboard = new Scanner (System.in);
   System.out.print("Enter your username: ");
   uName = keyboard.nextLine();
   return uName;
   }
-  public static String getPassword (){
+  public static String setPassword (){
   String pWord;
   Scanner keyboard = new Scanner (System.in);
   System.out.print("Enter your password: ");
   pWord = keyboard.nextLine();
   return pWord;
-  }
+}
 }
