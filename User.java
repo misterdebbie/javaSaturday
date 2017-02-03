@@ -5,7 +5,7 @@ public class User {
   private String name;
   private String password;
   private String filename;
-  private String filenameOld;
+  //private String filenameOld;
 
 //constructor
 //@param userName for user name
@@ -13,11 +13,11 @@ public class User {
 //@param fname for a new filename
 //@param fnameOld for an existing filename
 
-  public User (String userName, String userPword, String fname, String fnameOld){
+  public User (String userName, String userPword, String fname){
    name = userName;
    password = userPword;
    filename = fname;
-   filenameOld = fnameOld;
+   //filenameOld = fnameOld;
   }
 //set the user name
   public void setName(String userName){
@@ -32,9 +32,9 @@ public class User {
     filename = fname;
   }
   //set the existing filename
-  public void setfilenameOld(String fnameOld){
+  /*public void setfilenameOld(String fnameOld){
     filenameOld = fnameOld;
-  }
+  }*/
   //get the user name
     public String getName(){
       return name;
@@ -48,8 +48,8 @@ public class User {
       return filename;
     }
     //get the existing filename
-    public String getfilenameOld(){
+    /*public String getfilenameOld(){
       return filenameOld;
-    }
+    }*/
 
 }
