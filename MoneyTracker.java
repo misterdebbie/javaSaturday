@@ -5,47 +5,46 @@ import java.io.*;
 public class MoneyTracker {
  public static void main (String[] args)throws IOException{
   //declare variables
-  String userName, password, filename, itemname, day;
+  String day;
   int choice;
-  double originalPrice, discount, finalPrice, totalDisco;
+  double finalPrice, totalDisco;
   boolean dayCheck = false;
   boolean openSesame = false;
 
   do {
   choice = fileChoice();
   if (choice == 1){
-    userName = setUsername();
-    password = setPassword();
-    filename = createNewFile();
-    day = setDay();
     //create User
-    User user1 = new User (userName, password, filename);
-    itemname = setItem();
-    originalPrice = setItemCost();
-    discount = setDiscount();
+    User user1 = new User();
+    setUsername(user1);
+    setPassWord(user1);
+    createNewFile(user1);
+    day = setDay();
     //create Item
-    Item item1 = new Item(itemname, originalPrice, discount);
+    Item item1 = new Item();
+    setItemName(item1);
+    setItemCost(item1);
+    setItemDiscount(item1);
     finalPrice = item1.getFinalCost();
     totalDisco = item1.getTotalDiscount();
     writeToNewFile(user1, day, item1);
     openSesame = addData();
   }
   else{
-    userName = setUsername();
-    password = setPassword();
-    filename = openFile();
-    day = setDay();
     //create User
-    User user1 = new User (userName, password, filename);
-    itemname = setItem();
-    originalPrice = setItemCost();
-    discount = setDiscount();
+    User user1 = new User();
+    setUsername(user1);
+    setPassWord(user1);
+    openFile(user1);
+    day = setDay();
     //create Item
-    Item item1 = new Item(itemname, originalPrice, discount);
+    Item item1 = new Item();
+    setItemName(item1);
+    setItemCost(item1);
+    setItemDiscount(item1);
     finalPrice = item1.getFinalCost();
     totalDisco = item1.getTotalDiscount();
     addToFile(user1, day, item1);
-    System.out.println(finalPrice);
     openSesame = addData();
   }
   }while(openSesame);
@@ -62,41 +61,41 @@ public class MoneyTracker {
    keyboard.nextLine();
    return input;
  }
-  public static String createNewFile() throws IOException{
-   String fName;
-   Scanner keyboard = new Scanner (System.in);
-   System.out.print("Enter the filename: ");
-   fName = keyboard.nextLine();
-   File file = new File (fName);
-    while (file.exists()){
-    System.out.println("The file " + fName + " already exists");
-    System.out.print("Enter a new filename: ");
-    fName = keyboard.nextLine();
-  }
-    return fName;
+public static void createNewFile(User testUser) throws IOException{
+ String fName;
+ Scanner keyboard = new Scanner (System.in);
+ System.out.print("Enter the filename: ");
+ fName = keyboard.nextLine();
+ File file = new File (fName);
+  while (file.exists()){
+  System.out.println("The file " + fName + " already exists");
+  System.out.print("Enter a new filename: ");
+  fName = keyboard.nextLine();
 }
- public static String openFile () throws IOException{
+  testUser.setFilename(fName);
+}
+ public static void openFile (User testUser) throws IOException{
   String fName;
   Scanner keyboard = new Scanner (System.in);
   System.out.print("Enter the filename: ");
   fName = keyboard.nextLine();
   FileWriter fwriter = new FileWriter(fName, true);
   PrintWriter outputFile = new PrintWriter(fwriter);
-  return fName;
+  testUser.setFilename(fName);
 }
-  public static String setUsername (){
-   String uName;
+  public static void setUsername (User testUser){
+  String uName;
    Scanner keyboard = new Scanner (System.in);
    System.out.print("Enter your username: ");
    uName = keyboard.nextLine();
-   return uName;
+   testUser.setName(uName);
   }
-  public static String setPassword (){
-   String pWord;
-   Scanner keyboard = new Scanner (System.in);
-   System.out.print("Enter your password: ");
-   pWord = keyboard.nextLine();
-   return pWord;
+public static void setPassWord (User testUser){
+ String pWord;
+ Scanner keyboard = new Scanner (System.in);
+ System.out.print("Enter your password: ");
+ pWord = keyboard.nextLine();
+ testUser.setPassword(pWord);
 }
  public static String setDay (){
   String userDay;
@@ -144,14 +143,14 @@ public class MoneyTracker {
 //need to reset flag, ouuuuuuuu???????
       return userDay;
 }
-  public static String setItem (){
+  public static void setItemName (Item testItem){
    String userItem;
    Scanner keyboard = new Scanner (System.in);
    System.out.print("Enter the item name: ");
    userItem = keyboard.nextLine();
-  return userItem;
+  testItem.setName(userItem);
 }
-public static double setItemCost (){
+public static void setItemCost (Item testItem){
   double itemCost, check = 0;
   Scanner keyboard = new Scanner (System.in);
   System.out.print("Enter the original item price: ");
@@ -161,9 +160,9 @@ public static double setItemCost (){
     System.out.print("Enter the item price again: ");
     itemCost= keyboard.nextDouble();
 }
-  return itemCost;
+  testItem.setPrice(itemCost);
 }
-public static double setDiscount (){
+public static void setItemDiscount (Item testItem){
   double promo, check = 0;
   Scanner keyboard = new Scanner (System.in);
   System.out.print("Enter the discount: ");
@@ -173,7 +172,7 @@ public static double setDiscount (){
     System.out.print("Enter the item discount again: ");
     promo = keyboard.nextDouble();
 }
-  return promo;
+  testItem.setDiscount(promo);
 }
 public static boolean addData (){
   Scanner keyboard = new Scanner (System.in);
