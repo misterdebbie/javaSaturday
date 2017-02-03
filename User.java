@@ -19,6 +19,12 @@ public class User {
    filename = fname;
    //filenameOld = fnameOld;
   }
+  //constructor without arguments
+  public User (){
+   name = " ";
+   password = " ";
+   filename = " ";
+  }
 //set the user name
   public void setName(String userName){
     name = userName;

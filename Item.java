@@ -16,6 +16,12 @@ public class Item {
   originalPrice = iPrice;
   percentDisco = iDisco;
  }
+ //constructor without arguments
+ public Item(){
+  itemName = " ";
+  originalPrice = 0.0;
+  percentDisco = 0.0;
+ }
  //set the item name
    public void setName(String iName){
      itemName = iName;
