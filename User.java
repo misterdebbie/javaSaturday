@@ -13,10 +13,10 @@ public class User {
 //@param fname for a new filename
 //@param fnameOld for an existing filename
 
-  public User (String userName, String userPword, String fname){
-   name = userName;
-   password = userPword;
-   filename = fname;
+  public User (String name, String password, String filename){
+   this.name = name;
+   this.password = password;
+   this.filename = filename;
    //filenameOld = fnameOld;
   }
   //constructor without arguments
@@ -26,16 +26,16 @@ public class User {
    filename = " ";
   }
 //set the user name
-  public void setName(String userName){
-    name = userName;
+  public void setName(String name){
+    this.name = name;
   }
   //set the user password
-  public void setPassword(String userPword){
-    password = userPword;
+  public void setPassword(String password){
+    this.password = password;
   }
   //set the  new filename
-  public void setFilename(String fname){
-    filename = fname;
+  public void setFilename(String filename){
+    this.filename = filename;
   }
   //set the existing filename
   /*public void setfilenameOld(String fnameOld){
@@ -43,15 +43,15 @@ public class User {
   }*/
   //get the user name
     public String getName(){
-      return name;
+      return this.name;
     }
     //get the user password
     public String getPassword(){
-      return password;
+      return this.password;
     }
     //get the new filename
     public String getFilename(){
-      return filename;
+      return this.filename;
     }
     //get the existing filename
     /*public String getfilenameOld(){
