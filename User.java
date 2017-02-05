@@ -1,23 +1,20 @@
 //User class for savings tracker
 
 public class User {
-//declare fields
+//declare instance fields
   private String name;
   private String password;
   private String filename;
-  //private String filenameOld;
 
 //constructor
-//@param userName for user name
-//@param userPword for user password
-//@param fname for a new filename
-//@param fnameOld for an existing filename
+//@param name for user name
+//@param password for user password
+//@param filename for a new filename
 
   public User (String name, String password, String filename){
    this.name = name;
    this.password = password;
    this.filename = filename;
-   //filenameOld = fnameOld;
   }
   //constructor without arguments
   public User (){
@@ -37,10 +34,6 @@ public class User {
   public void setFilename(String filename){
     this.filename = filename;
   }
-  //set the existing filename
-  /*public void setfilenameOld(String fnameOld){
-    filenameOld = fnameOld;
-  }*/
   //get the user name
     public String getName(){
       return this.name;
@@ -53,9 +46,4 @@ public class User {
     public String getFilename(){
       return this.filename;
     }
-    //get the existing filename
-    /*public String getfilenameOld(){
-      return filenameOld;
-    }*/
-
 }
