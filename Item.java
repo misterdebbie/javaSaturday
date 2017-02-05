@@ -1,15 +1,15 @@
 //Item class for savings tracker
 
 public class Item {
- //fields
+ //declare instance fields
  private String itemName;
  private double originalPrice;
  private double percentDisco;
 
 //constructor
-//@param iName for item name
-//@param iPrice for original item price
-//@param iDisco for item discount
+//@param itemName for item name
+//@param originalPrice for original item price
+//@param percentDisco for item discount
 
  public Item(String itemName, double originalPrice, double percentDisco){
   this.itemName = itemName;
