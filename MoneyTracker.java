@@ -98,6 +98,18 @@ public static void setPassWord (User testUser){
  testUser.setPassword(pWord);
 }
  public static String setDay (){
+   /*String [] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"};
+   String input;
+
+   Scanner keyboard = new Scanner(System.in);
+   System.out.print("Enter the day: ");
+   input = keyboard.nextLine();
+    for(int index = 0; index < days.length; index++){
+    if (days[index].equalsIgnoreCase(input)){
+     System.out.println("Match");
+     index = days.length;
+    }
+  }*/
   String userDay;
   boolean check = false;
   Scanner keyboard = new Scanner (System.in);
